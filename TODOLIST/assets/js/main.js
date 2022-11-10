@@ -49,8 +49,11 @@ addEventListener('click', (event) => {
 
     let readDifferenceOne = []
     if (event.composedPath()[1].classList.contains('checked')) {
-      readTasks.splice(Number(event.composedPath()[1].id), 1)
-      readDifferenceOne = readTasks
+      readTasks.forEach(item => {
+        if (!(Number(item) === Number(indexOfRemove))) {
+          readDifferenceOne.push((item - 1))
+        }
+      })
     } else {
     
       readTasks.forEach((item) => { 
