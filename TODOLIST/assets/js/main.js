@@ -21,14 +21,7 @@ window.onload = () => {
 
   tasks.forEach((task, index) => {
 
-    tasksHTML.innerHTML += 
-    `
-    <p class="chores" id="${index}">
-      <img src="/assets/icons/check-square.svg" class="checkedTask" id="${index}">
-      <span>${task}</span>
-      <img src="/assets/icons/trash.svg" class="deleteTask" id="${index}">
-    </p>
-    `
+    tasksHTML.innerHTML += TasksComponent(task, index)
 
     readTasks.forEach(readed => {
       if (Number(document.getElementById(index).id) === Number(readed)) {
@@ -70,14 +63,8 @@ addEventListener('click', (event) => {
     tasksHTML.innerHTML = ''
 
     tasks.forEach((task, index) => {
-      tasksHTML.innerHTML += 
-      `
-      <p class="chores" id="${index}">
-        <img src="/assets/icons/check-square.svg" class="checkedTask" id="${index}">
-        <span>${task}</span>
-        <img src="/assets/icons/trash.svg" class="deleteTask" id="${index}">
-      </p>
-      `
+      tasksHTML.innerHTML += TasksComponent(task, index)
+      
 
       readDifferenceOne.forEach(readed => {
         if (Number(document.getElementById(index).id) === Number(readed)) {
@@ -107,14 +94,7 @@ addEventListener('keypress', (event) => {
 
   if (event.key === 'Enter') {
     if (inputHTML.value.length !== 0) {
-      tasksHTML.innerHTML += 
-      `
-      <p class="chores" id="${count}">
-        <img src="/assets/icons/check-square.svg" class="checkedTask" id="${count}">
-        <span>${inputHTML.value}</span>
-        <img src="/assets/icons/trash.svg" class="deleteTask" id="${count++}">
-      </p>
-      `
+      tasksHTML.innerHTML += TasksComponent(inputHTML.value, count)
       tasks.push(inputHTML.value)
       inputHTML.value = ''
       localStorage.setItem("@TODO", JSON.stringify(tasks))
@@ -123,4 +103,13 @@ addEventListener('keypress', (event) => {
   count = 0
 })
 
-
+function TasksComponent(task, index) {
+  return (
+  `
+  <p class="chores" id="${index}">
+    <img src="/assets/icons/check-square.svg" class="checkedTask" id="${index}">
+    <span>${task}</span>
+    <img src="/assets/icons/trash.svg" class="deleteTask" id="${index}">
+  </p>
+  `)
+}
