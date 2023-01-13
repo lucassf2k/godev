@@ -21,7 +21,7 @@ window.onload = () => {
 
   tasks.forEach((task, index) => {
 
-    tasksHTML.innerHTML += TasksComponent(task, index)
+    tasksHTML.innerHTML += tasksComponent(task, index)
 
     readTasks.forEach(readed => {
       if (Number(document.getElementById(index).id) === Number(readed)) {
@@ -63,7 +63,7 @@ addEventListener('click', (event) => {
     tasksHTML.innerHTML = ''
 
     tasks.forEach((task, index) => {
-      tasksHTML.innerHTML += TasksComponent(task, index)
+      tasksHTML.innerHTML += tasksComponent(task, index)
       
 
       readDifferenceOne.forEach(readed => {
@@ -94,7 +94,7 @@ addEventListener('keypress', (event) => {
 
   if (event.key === 'Enter') {
     if (inputHTML.value.length !== 0) {
-      tasksHTML.innerHTML += TasksComponent(inputHTML.value, count)
+      tasksHTML.innerHTML += tasksComponent(inputHTML.value, count)
       tasks.push(inputHTML.value)
       inputHTML.value = ''
       localStorage.setItem("@TODO", JSON.stringify(tasks))
@@ -103,7 +103,7 @@ addEventListener('keypress', (event) => {
   count = 0
 })
 
-function TasksComponent(task, index) {
+function tasksComponent(task, index) {
   return (
   `
   <p class="chores" id="${index}">
